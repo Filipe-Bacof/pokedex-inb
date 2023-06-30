@@ -1,5 +1,9 @@
 'use client'
 
+import {
+  IconPlayerTrackNext,
+  IconPlayerTrackPrev,
+} from '@/components/IconsPrevNext'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
@@ -86,17 +90,25 @@ export default function Home() {
           </div>
           <div
             id="screen-pokedex"
-            className="relative mx-auto flex h-40 w-56 justify-end rounded-md border border-black bg-[#7D8283]"
+            className="relative mx-auto flex h-44 w-56 justify-end rounded-md border border-black bg-[#7D8283]"
           >
-            <div className="flex h-[9.7rem] w-[13.7rem] justify-center rounded-md border-b border-l border-black bg-white">
-              <div className="absolute inset-0 z-10 rounded-md"></div>
-              <Image
-                className="z-1 relative h-32 w-32 p-4"
-                src={`${imagePokemon}`}
-                alt="pokemon"
-                width={1000}
-                height={1000}
-              />
+            <div className="h-[10.7rem] w-[13.7rem] rounded-md border-b border-l border-black bg-white">
+              <div className="z-1 absolute rounded-md">
+                <Image
+                  className="relative left-5 top-5 z-10 h-28 w-44 rounded-lg border border-black"
+                  src={'/bg-wild.png'}
+                  alt="pokemon"
+                  width={1000}
+                  height={1000}
+                />
+                <Image
+                  className="relative left-1/2 top-1/2 z-20 h-24 w-24 -translate-x-6 -translate-y-[5.5rem] transform"
+                  src={`${imagePokemon}`}
+                  alt="pokemon"
+                  width={1000}
+                  height={1000}
+                />
+              </div>
             </div>
             <div className="absolute bottom-2 right-2 z-10">
               <p className="font-bold text-gray-700">
@@ -105,13 +117,31 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="mt-8 flex flex-col items-center justify-center">
-            <div>
+          <div
+            id="search-box"
+            className="mx-auto mt-6 flex items-center justify-end"
+          >
+            <div className="w-56 rounded-md border border-black bg-[#7D8283]">
               <input
-                className="bg-white"
+                className="mb-1 ml-1 w-[13.6rem] rounded-md border-b border-l border-black bg-white px-4 py-1 placeholder:text-center"
                 type="text"
                 placeholder="Name or Number"
               />
+            </div>
+          </div>
+          <div
+            id="buttons-next-prev"
+            className="mx-4 mt-6 flex justify-between"
+          >
+            <div className="w-[6.5rem] rounded-md border border-black bg-gray-800">
+              <button className="mb-1 ml-1 flex h-6 w-[6.1rem] justify-center rounded-md border-b border-l border-black bg-gray-700 py-1 active:mb-0 active:ml-0 active:mr-1 active:mt-1 active:border-b-0 active:border-l-0 active:border-r active:border-t">
+                <IconPlayerTrackPrev />
+              </button>
+            </div>
+            <div className="w-[6.5rem] rounded-md border border-black bg-gray-800">
+              <button className="mb-1 ml-1 flex h-6 w-[6.1rem] justify-center rounded-md border-b border-l border-black bg-gray-700 py-1 active:mb-0 active:ml-0 active:mr-1 active:mt-1 active:border-b-0 active:border-l-0 active:border-r active:border-t">
+                <IconPlayerTrackNext />
+              </button>
             </div>
           </div>
         </div>
