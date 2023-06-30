@@ -36,7 +36,7 @@ export default function Home() {
   }
 
   async function renderPokemon(poke: string | number) {
-    if (poke === undefined || 0) {
+    if (poke === undefined) {
       return
     }
 
@@ -55,7 +55,7 @@ export default function Home() {
     setPokeNumber('')
     setPokeName('Carregando...')
 
-    const data = await fetchPokemon(poke)
+    const data = await fetchPokemon(`${poke}`.toLowerCase())
 
     if (data) {
       if (data.name) {
@@ -83,7 +83,7 @@ export default function Home() {
   useEffect(() => {
     const handleFormSubmit = (event: Event) => {
       event.preventDefault()
-      renderPokemon(inputValue.toLowerCase())
+      renderPokemon(inputValue)
     }
 
     if (form.current) {
