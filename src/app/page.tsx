@@ -8,15 +8,17 @@ import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 
 export default function Home() {
-  const [currentPoke, setCurrentPoke] = useState('charmander')
-  const [pokeNumber, setPokeNumber] = useState('4')
-  const [pokeName, setPokeName] = useState('Charmander')
+  const [pokeNumber, setPokeNumber] = useState('1')
+  const [pokeName, setPokeName] = useState('Bulbasaur')
   const [imagePokemon, setImagePokemon] = useState(
-    '/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2FPokeAPI%2Fsprites%2Fmaster%2Fsprites%2Fpokemon%2Fversions%2Fgeneration-v%2Fblack-white%2Fanimated%2F4.gif&w=2048&q=75',
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/1.gif',
   )
   const [inputValue, setInputValue] = useState('')
   let searchPokemon = '1'
+
   const form = useRef<HTMLFormElement>(null)
+  const nextBtn = useRef<HTMLButtonElement>(null)
+  const prevBtn = useRef<HTMLButtonElement>(null)
 
   async function fetchPokemon(poke: string) {
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke}`)
@@ -24,7 +26,7 @@ export default function Home() {
       const data = await APIResponse.json()
       return data
     } else {
-      console.log('erro!!!!')
+      console.log('⭐ Easter Egg: Missingno!!!!')
     }
   }
 
@@ -33,31 +35,33 @@ export default function Home() {
     setPokeName('Carregando...')
 
     const data = await fetchPokemon(poke)
+
     if (data) {
-      setPokeName(data.name)
+      if (data.name) {
+        setPokeName(data.name.charAt(0).toUpperCase() + data.name.slice(1))
+      }
       setPokeNumber(data.id)
-      setImagePokemon(
-        data.sprites.versions['generation-v']['black-white'].animated
-          .front_default,
-      )
+
+      if (data.sprites && data.sprites.versions) {
+        setImagePokemon(
+          data.sprites.versions['generation-v']['black-white'].animated
+            .front_default,
+        )
+      }
       setInputValue('')
       searchPokemon = `${data.id}`
     } else {
-      setImagePokemon('./missingno.png')
+      setImagePokemon('/missingno.png')
       setPokeName('Não Encontrado')
       setPokeNumber('?')
     }
   }
 
-  useEffect(() => {
-    fetchPokemon(searchPokemon)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
+  // INPUT FIELD
   useEffect(() => {
     const handleFormSubmit = (event: Event) => {
       event.preventDefault()
-      renderPokemon(currentPoke.toLowerCase())
+      renderPokemon(inputValue.toLowerCase())
     }
 
     if (form.current) {
@@ -68,6 +72,52 @@ export default function Home() {
       if (form.current) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         form.current.removeEventListener('submit', handleFormSubmit)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // NEXT BUTTON
+  useEffect(() => {
+    const searchPoke = () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      searchPokemon = `${Number(searchPokemon) + 1}`
+      renderPokemon(searchPokemon)
+    }
+
+    const button = nextBtn.current
+
+    if (button) {
+      button.addEventListener('click', searchPoke)
+    }
+
+    return () => {
+      if (button) {
+        button.removeEventListener('click', searchPoke)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // PREV BUTTON
+  useEffect(() => {
+    const searchPoke = () => {
+      if (Number(searchPokemon) > 1) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        searchPokemon = `${Number(searchPokemon) - 1}`
+        renderPokemon(searchPokemon)
+      }
+    }
+
+    const button = prevBtn.current
+
+    if (button) {
+      button.addEventListener('click', searchPoke)
+    }
+
+    return () => {
+      if (button) {
+        button.removeEventListener('click', searchPoke)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,8 +150,7 @@ export default function Home() {
               id="red-btn"
               className="h-4 w-4 cursor-pointer overflow-hidden rounded-full border border-black bg-red-700"
               onClick={() => {
-                setCurrentPoke('charmander')
-                fetchPokemon(currentPoke)
+                console.log('Botão Vermelho')
               }}
             >
               <div className="h-3 w-3 rounded-full bg-red-600"></div>
@@ -110,8 +159,7 @@ export default function Home() {
               id="yellow-btn"
               className="h-4 w-4 cursor-pointer overflow-hidden rounded-full border border-black bg-yellow-500"
               onClick={() => {
-                setCurrentPoke('charmeleon')
-                fetchPokemon(currentPoke)
+                console.log('Botão Amarelo')
               }}
             >
               <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
@@ -120,8 +168,7 @@ export default function Home() {
               id="green-btn"
               className="h-4 w-4 cursor-pointer overflow-hidden rounded-full border border-black bg-green-600"
               onClick={() => {
-                setCurrentPoke('charizard')
-                fetchPokemon(currentPoke)
+                console.log('Botão Verde')
               }}
             >
               <div className="h-3 w-3 rounded-full bg-green-500"></div>
@@ -177,12 +224,18 @@ export default function Home() {
             className="mx-4 mt-6 flex justify-between"
           >
             <div className="w-[6.5rem] rounded-md border border-black bg-gray-800">
-              <button className="mb-1 ml-1 flex h-6 w-[6.1rem] justify-center rounded-md border-b border-l border-black bg-gray-700 py-1 active:mb-0 active:ml-0 active:mr-1 active:mt-1 active:border-b-0 active:border-l-0 active:border-r active:border-t">
+              <button
+                ref={prevBtn}
+                className="mb-1 ml-1 flex h-6 w-[6.1rem] justify-center rounded-md border-b border-l border-black bg-gray-700 py-1 active:mb-0 active:ml-0 active:mr-1 active:mt-1 active:border-b-0 active:border-l-0 active:border-r active:border-t"
+              >
                 <IconPlayerTrackPrev />
               </button>
             </div>
             <div className="w-[6.5rem] rounded-md border border-black bg-gray-800">
-              <button className="mb-1 ml-1 flex h-6 w-[6.1rem] justify-center rounded-md border-b border-l border-black bg-gray-700 py-1 active:mb-0 active:ml-0 active:mr-1 active:mt-1 active:border-b-0 active:border-l-0 active:border-r active:border-t">
+              <button
+                ref={nextBtn}
+                className="mb-1 ml-1 flex h-6 w-[6.1rem] justify-center rounded-md border-b border-l border-black bg-gray-700 py-1 active:mb-0 active:ml-0 active:mr-1 active:mt-1 active:border-b-0 active:border-l-0 active:border-r active:border-t"
+              >
                 <IconPlayerTrackNext />
               </button>
             </div>
