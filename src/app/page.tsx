@@ -31,7 +31,7 @@ export default function Home() {
   }, [currentPoke])
 
   return (
-    <main className="flex h-[100vh] flex-col items-center justify-center bg-lg-blue">
+    <section className="flex h-[90vh] flex-col items-center justify-center">
       <div
         id="lateral-pokedex"
         className="flex h-96 w-[16.7rem] flex-row-reverse rounded-l-3xl border-l border-black bg-pokedex-b"
@@ -116,6 +116,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   )
 }
