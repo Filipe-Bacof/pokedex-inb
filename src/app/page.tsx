@@ -5,7 +5,7 @@ import {
   IconPlayerTrackPrev,
 } from '@/components/IconsPrevNext'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export default function Home() {
   const [currentPoke, setCurrentPoke] = useState('charmander')
@@ -14,25 +14,64 @@ export default function Home() {
   const [imagePokemon, setImagePokemon] = useState(
     '/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2FPokeAPI%2Fsprites%2Fmaster%2Fsprites%2Fpokemon%2Fversions%2Fgeneration-v%2Fblack-white%2Fanimated%2F4.gif&w=2048&q=75',
   )
+  const [inputValue, setInputValue] = useState('')
+  let searchPokemon = '1'
+  const form = useRef<HTMLFormElement>(null)
+
   async function fetchPokemon(poke: string) {
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke}`)
     if (APIResponse.status === 200) {
       const data = await APIResponse.json()
-      console.log(data)
+      return data
+    } else {
+      console.log('erro!!!!')
+    }
+  }
+
+  async function renderPokemon(poke: string) {
+    setPokeNumber('')
+    setPokeName('Carregando...')
+
+    const data = await fetchPokemon(poke)
+    if (data) {
+      setPokeName(data.name)
+      setPokeNumber(data.id)
       setImagePokemon(
         data.sprites.versions['generation-v']['black-white'].animated
           .front_default,
-        // data.sprites.versions['generation-ii'].crystal.front_default,
       )
-      setPokeName(data.name.charAt(0).toUpperCase() + data.name.slice(1))
-      setPokeNumber(data.id)
-      return data
+      setInputValue('')
+      searchPokemon = `${data.id}`
+    } else {
+      setImagePokemon('./missingno.png')
+      setPokeName('Não Encontrado')
+      setPokeNumber('?')
     }
   }
 
   useEffect(() => {
-    fetchPokemon(currentPoke)
-  }, [currentPoke])
+    fetchPokemon(searchPokemon)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    const handleFormSubmit = (event: Event) => {
+      event.preventDefault()
+      renderPokemon(currentPoke.toLowerCase())
+    }
+
+    if (form.current) {
+      form.current.addEventListener('submit', handleFormSubmit)
+    }
+
+    return () => {
+      if (form.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        form.current.removeEventListener('submit', handleFormSubmit)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <section className="flex h-[90vh] flex-col items-center justify-center">
@@ -117,7 +156,9 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div
+          <form
+            ref={form}
+            onSubmit={() => renderPokemon(inputValue)}
             id="search-box"
             className="mx-auto mt-6 flex items-center justify-end"
           >
@@ -125,10 +166,12 @@ export default function Home() {
               <input
                 className="mb-1 ml-1 w-[13.6rem] rounded-md border-b border-l border-black bg-white px-4 py-1 placeholder:text-center"
                 type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Name or Number"
               />
             </div>
-          </div>
+          </form>
           <div
             id="buttons-next-prev"
             className="mx-4 mt-6 flex justify-between"
