@@ -14,13 +14,18 @@ export default function Home() {
     'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/1.gif',
   )
   const [inputValue, setInputValue] = useState('')
-  let searchPokemon = '1'
+  const [searchPokemon, setSearchPokemon] = useState(1)
 
   const form = useRef<HTMLFormElement>(null)
   const nextBtn = useRef<HTMLButtonElement>(null)
   const prevBtn = useRef<HTMLButtonElement>(null)
 
-  async function fetchPokemon(poke: string) {
+  useEffect(() => {
+    renderPokemon(searchPokemon)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchPokemon])
+
+  async function fetchPokemon(poke: string | number) {
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke}`)
     if (APIResponse.status === 200) {
       const data = await APIResponse.json()
@@ -30,7 +35,23 @@ export default function Home() {
     }
   }
 
-  async function renderPokemon(poke: string) {
+  async function renderPokemon(poke: string | number) {
+    if (poke === undefined || 0) {
+      return
+    }
+
+    const regex = /^\d+$/
+    const isNum = regex.test(`${poke}`)
+
+    if (isNum) {
+      if (Number(poke) >= 650) {
+        setImagePokemon('/missingno.png')
+        setPokeName('Não Encontrado')
+        setSearchPokemon(0)
+        setPokeNumber('?')
+        return
+      }
+    }
     setPokeNumber('')
     setPokeName('Carregando...')
 
@@ -49,10 +70,11 @@ export default function Home() {
         )
       }
       setInputValue('')
-      searchPokemon = `${data.id}`
+      setSearchPokemon(data.id)
     } else {
       setImagePokemon('/missingno.png')
       setPokeName('Não Encontrado')
+      setSearchPokemon(0)
       setPokeNumber('?')
     }
   }
@@ -80,9 +102,7 @@ export default function Home() {
   // NEXT BUTTON
   useEffect(() => {
     const searchPoke = () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      searchPokemon = `${Number(searchPokemon) + 1}`
-      renderPokemon(searchPokemon)
+      setSearchPokemon((prevValue) => prevValue + 1)
     }
 
     const button = nextBtn.current
@@ -96,16 +116,13 @@ export default function Home() {
         button.removeEventListener('click', searchPoke)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [searchPokemon])
 
   // PREV BUTTON
   useEffect(() => {
     const searchPoke = () => {
-      if (Number(searchPokemon) > 1) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        searchPokemon = `${Number(searchPokemon) - 1}`
-        renderPokemon(searchPokemon)
+      if (searchPokemon > 1) {
+        setSearchPokemon((prevValue) => prevValue - 1)
       }
     }
 
@@ -121,7 +138,7 @@ export default function Home() {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [searchPokemon])
 
   return (
     <section className="flex h-[90vh] flex-col items-center justify-center">
