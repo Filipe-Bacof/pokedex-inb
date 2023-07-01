@@ -3,6 +3,7 @@
 import { IconPlayerTrackNext, IconPlayerTrackPrev } from '@/icons/IconsPrevNext'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
+import { toast } from 'react-toastify'
 
 export default function Home() {
   const [pokeNumber, setPokeNumber] = useState('1')
@@ -22,6 +23,35 @@ export default function Home() {
     renderPokemon(searchPokemon)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchPokemon])
+
+  function savePokemonToLocalStorage(pokemonName: string) {
+    if (pokemonName === 'não encontrado') {
+      return toast('Não foi possível salvar esse pokémon.', {
+        type: 'error',
+      })
+    }
+    const slots = ['poke1', 'poke2', 'poke3', 'poke4', 'poke5', 'poke6']
+    let slotIndex = -1
+
+    for (let i = 0; i < slots.length; i++) {
+      if (!localStorage.getItem(slots[i])) {
+        slotIndex = i
+        break
+      }
+    }
+
+    if (slotIndex === -1) {
+      toast('Todos os espaços estão ocupados.', {
+        type: 'error',
+      })
+      return
+    }
+
+    localStorage.setItem(slots[slotIndex], pokemonName)
+    toast(`O pokemon "${pokemonName}" foi salvo no slot ${slotIndex + 1}.`, {
+      type: 'success',
+    })
+  }
 
   async function fetchPokemon(poke: string | number) {
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke}`)
@@ -183,6 +213,7 @@ export default function Home() {
               className="h-4 w-4 cursor-pointer overflow-hidden rounded-full border border-black bg-yellow-500"
               onClick={() => {
                 console.log('Botão Amarelo')
+                savePokemonToLocalStorage(pokeName.toLowerCase())
               }}
             >
               <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
