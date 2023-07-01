@@ -12,6 +12,7 @@ export default function Home() {
   )
   const [inputValue, setInputValue] = useState('')
   const [searchPokemon, setSearchPokemon] = useState(1)
+  const [bgType, setBgType] = useState('/bg-types/grass.jpg')
 
   const form = useRef<HTMLFormElement>(null)
   const nextBtn = useRef<HTMLButtonElement>(null)
@@ -26,6 +27,7 @@ export default function Home() {
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke}`)
     if (APIResponse.status === 200) {
       const data = await APIResponse.json()
+      console.log(data)
       return data
     } else {
       console.log('⭐ Easter Egg: Missingno!!!!')
@@ -43,6 +45,7 @@ export default function Home() {
     if (isNum) {
       if (Number(poke) >= 650) {
         setImagePokemon('/missingno.png')
+        setBgType('/bg-wild.png')
         setPokeName('Não Encontrado')
         setSearchPokemon(0)
         setPokeNumber('?')
@@ -59,6 +62,7 @@ export default function Home() {
         setPokeName(data.name.charAt(0).toUpperCase() + data.name.slice(1))
       }
       setPokeNumber(data.id)
+      setBgType(`/bg-types/${data.types[0].type.name}.jpg`)
 
       if (data.sprites && data.sprites.versions) {
         setImagePokemon(
@@ -70,6 +74,7 @@ export default function Home() {
       setSearchPokemon(data.id)
     } else {
       setImagePokemon('/missingno.png')
+      setBgType('/bg-wild.png')
       setPokeName('Não Encontrado')
       setSearchPokemon(0)
       setPokeNumber('?')
@@ -196,7 +201,7 @@ export default function Home() {
               <div className="z-1 absolute rounded-md">
                 <Image
                   className="relative left-5 top-5 z-10 h-28 w-44 rounded-lg border border-black"
-                  src={'/bg-wild.png'}
+                  src={bgType}
                   alt="pokemon"
                   width={1000}
                   height={1000}
