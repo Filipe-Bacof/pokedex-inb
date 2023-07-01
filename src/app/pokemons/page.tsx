@@ -1,5 +1,6 @@
 'use client'
 
+import PokemonCard from '@/components/PokemonCard'
 import { useEffect, useState } from 'react'
 
 interface PokemonItem {
@@ -15,6 +16,19 @@ export default function Pokemons() {
   const [nextPage, setNextPage] = useState('')
   const [prevPage, setPrevPage] = useState('')
   const [pokemons, setPokemons] = useState([])
+
+  const getPageNumber = (url: string) => {
+    const regex = /offset=(\d+)/
+    const match = url.match(regex)
+
+    const offsetValue = match ? match[1] : null
+
+    console.log(offsetValue)
+    if (offsetValue) {
+      return Number(offsetValue) / 30
+    }
+    return 0
+  }
 
   const apiFetch = async (url: string) => {
     const APIResponse = await fetch(url)
@@ -32,19 +46,25 @@ export default function Pokemons() {
   return (
     <section>
       <div className="m-6 flex justify-between">
-        <button onClick={() => apiFetch(prevPage)} className="bg-red-500">
+        <button
+          onClick={() => apiFetch(prevPage)}
+          className="rounded-md bg-yellow-500 p-1"
+        >
           PREV
         </button>
-        <span>numero da página</span>
-        <button onClick={() => apiFetch(nextPage)} className="bg-red-500">
+        <span>Página&nbsp;{getPageNumber(nextPage)}&nbsp;de 42</span>
+        <button
+          onClick={() => apiFetch(nextPage)}
+          className="rounded-md bg-yellow-500 p-1"
+        >
           NEXT
         </button>
       </div>
-      <div>
+      <div className="m-12 flex flex-wrap items-center justify-center gap-2">
         {pokemons.length === 0
           ? 'Carregando...'
           : pokemons.map((item: PokemonItem) => (
-              <h1 key={item.name}>{item.name}</h1>
+              <PokemonCard key={item.name} name={item.name} url={item.url} />
             ))}
       </div>
     </section>
