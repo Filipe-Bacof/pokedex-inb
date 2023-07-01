@@ -26,8 +26,9 @@ export default function Home() {
 
   function savePokemonToLocalStorage(pokemonName: string) {
     if (pokemonName === 'não encontrado') {
-      return toast('Não foi possível salvar esse pokémon.', {
+      return toast("Couldn't save this pokemon.", {
         type: 'error',
+        autoClose: 1000,
       })
     }
     const slots = ['poke1', 'poke2', 'poke3', 'poke4', 'poke5', 'poke6']
@@ -41,16 +42,23 @@ export default function Home() {
     }
 
     if (slotIndex === -1) {
-      toast('Todos os espaços estão ocupados.', {
+      toast('All pokemon slots on your team are filled.', {
         type: 'error',
+        autoClose: 1000,
       })
       return
     }
 
     localStorage.setItem(slots[slotIndex], pokemonName)
-    toast(`O pokemon "${pokemonName}" foi salvo no slot ${slotIndex + 1}.`, {
-      type: 'success',
-    })
+    toast(
+      `The pokemon ${pokemonName.toUpperCase()} was saved in slot ${
+        slotIndex + 1
+      }.`,
+      {
+        type: 'success',
+        autoClose: 1000,
+      },
+    )
   }
 
   async function fetchPokemon(poke: string | number) {
