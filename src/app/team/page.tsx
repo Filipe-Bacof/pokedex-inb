@@ -30,7 +30,7 @@ export default function Team() {
   }
 
   return (
-    <div className="flex w-[100vw] flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center md:flex-row">
         <PokeTeamCard
           name={pokemons[0]}

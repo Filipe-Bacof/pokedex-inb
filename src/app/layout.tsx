@@ -17,7 +17,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={`${inter.className}`}>
         <Toast />
         <Header />
-        <main className="pt-14">{children}</main>
+        <main className="flex justify-center overflow-x-hidden pt-14">
+          {children}
+        </main>
       </body>
     </html>
   )

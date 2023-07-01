@@ -70,7 +70,7 @@ export default function PokeTeamCard({
 
   return (
     <div
-      className={`m-2 rounded-lg border border-blue-600 bg-black/80 p-4 md:p-2 ${
+      className={`my-2 rounded-lg border border-blue-600 bg-black/80 p-4 md:p-2 ${
         leader
           ? 'h-56 w-80 text-gray-200 md:h-[30rem]'
           : 'h-52 w-72 text-gray-400 md:h-[5.6rem]'
