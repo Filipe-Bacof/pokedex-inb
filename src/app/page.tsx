@@ -1,9 +1,6 @@
 'use client'
 
-import {
-  IconPlayerTrackNext,
-  IconPlayerTrackPrev,
-} from '@/components/IconsPrevNext'
+import { IconPlayerTrackNext, IconPlayerTrackPrev } from '@/icons/IconsPrevNext'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 

@@ -1,8 +1,8 @@
 import {
   IconChat3Fill,
   IconFileBarGraphFill,
-  IconHome,
   IconSearch,
+  IconTeamFill,
 } from '@/icons/IconsHeader'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -19,8 +19,8 @@ export default function Header() {
       />
       <nav className="flex flex-row items-center justify-center text-logo-yellow">
         <Link className="flex flex-row items-center justify-center" href={'/'}>
-          <IconHome />
-          <span className="hidden md:block">&nbsp;Home</span>
+          <IconSearch />
+          <span className="hidden md:block">&nbsp;Search</span>
         </Link>
         <span className="text-logo-shadow">&nbsp;|&nbsp;</span>
         <Link
@@ -33,10 +33,10 @@ export default function Header() {
         <span className="text-logo-shadow">&nbsp;|&nbsp;</span>
         <Link
           className="flex flex-row items-center justify-center"
-          href={'/search'}
+          href={'/team'}
         >
-          <IconSearch />
-          <span className="hidden md:block">&nbsp;Search</span>
+          <IconTeamFill />
+          <span className="hidden md:block">&nbsp;Team</span>
         </Link>
         <span className="text-logo-shadow">&nbsp;|&nbsp;</span>
         <Link
