@@ -8,11 +8,10 @@ export default function ProfOak() {
   const pokemonFireRed = [
     'Hello, there! Glad to meet you!',
     'Welcome to the world of Pokémon!',
-    'My name is Oak.',
+    'My name is Oak. I study Pokémon as a profession.',
     'People affectionately refer to me as the Pokémon Professor.',
     'This world is inhabited far and wide by creatures called Pokémon.',
     'For some people, Pokémon are pets. Others use them for battling.',
-    'As for myself, I study Pokémon as a profession.',
     'Your very own Pokémon legend is about to unfold.',
     "A world of dreams and adventures with Pokémon awaits! Let's go!",
   ]
@@ -48,16 +47,24 @@ export default function ProfOak() {
           width={214}
           height={331}
         />
-        <div className="relative left-0 top-0 z-20 w-44 -translate-y-[10.5rem] translate-x-[5.7rem]">
-          <h2 className="h-16 text-sm">{pokemonFireRed[currentSpeechIndex]}</h2>
-          <div className="flex justify-between">
-            <button onClick={handlePrevSpeech}>
+        <div className="absolute z-20 w-44 -translate-y-[10.5rem] translate-x-[5.7rem]">
+          <div className="relative z-30 flex w-64 -translate-x-[0.5rem] -translate-y-2">
+            <button
+              className="flex h-24 w-24 items-end justify-start"
+              onClick={handlePrevSpeech}
+            >
               <IconPlayerTrackPrev />
             </button>
-            <button onClick={handleNextSpeech}>
+            <button
+              className="flex h-24 w-24 items-end justify-end"
+              onClick={handleNextSpeech}
+            >
               <IconPlayerTrackNext />
             </button>
           </div>
+          <h2 className="relative z-10 flex h-24 -translate-y-[6.5rem] items-center text-center text-sm">
+            {pokemonFireRed[currentSpeechIndex]}
+          </h2>
         </div>
       </div>
     </section>
