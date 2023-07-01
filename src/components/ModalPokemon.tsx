@@ -1,4 +1,5 @@
 import { IconCloseCircle } from '@/icons/IconCloseCircle'
+import { IconPokeball } from '@/icons/IconPokeball'
 import {
   Abilities,
   Moves,
@@ -39,7 +40,6 @@ export default function ModalPokemon({
     const APIResponse = await fetch(url)
     if (APIResponse.status === 200) {
       const data = await APIResponse.json()
-      console.log(data)
 
       data.id && setIdPokemon(data.id)
       data.name && setNamePokemon(data.name)
@@ -69,8 +69,9 @@ export default function ModalPokemon({
       }`}
     >
       <div id="header-modal" className="flex flex-row justify-between">
-        <h1 className="p-4">
-          <span>{idPokemon}&nbsp;-&nbsp;</span>
+        <h1 className="flex items-center gap-1 p-4 text-2xl font-bold">
+          <IconPokeball className="text-red-600" />
+          <span className="text-white/60">{idPokemon}&nbsp;-&nbsp;</span>
           {namePokemon.charAt(0).toUpperCase() + namePokemon.slice(1)}
         </h1>{' '}
         <div
@@ -97,7 +98,7 @@ export default function ModalPokemon({
             <div className="flex md:flex-col">
               {typesPokemon.map((item: TypePokemon) => (
                 <p
-                  className={`m-1 rounded-md border px-1 font-medium ${
+                  className={`m-1 rounded-md border px-1 font-medium text-black md:text-center ${
                     typeColors[item.type.name]
                   }`}
                   key={`${item.slot}${namePokemon}`}
@@ -121,12 +122,12 @@ export default function ModalPokemon({
           </div>
         </div>
         <div className="m-4 md:flex md:w-[28rem] md:flex-row md:flex-wrap">
-          <div className="flex flex-col md:flex-row md:items-center md:gap-4">
+          <div className="flex flex-col md:flex-row md:items-center md:gap-4 md:pb-2">
             <h2>Abilities</h2>
-            <div className="flex">
+            <div className="flex md:gap-6">
               {abilitiesPokemon.map((item: Abilities) => (
                 <p
-                  className={`m-1 rounded-md border bg-white/30 px-1 md:h-8`}
+                  className={`m-1 rounded-md border bg-white/5 px-1 md:h-8`}
                   key={`${item.slot}${namePokemon}`}
                 >
                   {item.ability.name.charAt(0).toUpperCase() +
@@ -135,12 +136,12 @@ export default function ModalPokemon({
               ))}
             </div>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col md:border-t md:pt-2">
             <h2>Stats</h2>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap md:justify-evenly">
               {statsPokemon.map((item: StatItem) => (
                 <p
-                  className={`m-1 rounded-md border bg-white/30 px-1 md:h-8 md:text-sm`}
+                  className={`m-1 rounded-md border bg-white/5 px-1 md:h-8 md:text-sm`}
                   key={`${item.stat.name}${namePokemon}`}
                 >
                   <span>{item.stat.name.toUpperCase()}&nbsp;=&nbsp;</span>
@@ -156,10 +157,10 @@ export default function ModalPokemon({
           All the moves{' '}
           {namePokemon.charAt(0).toUpperCase() + namePokemon.slice(1)} can learn
         </h2>
-        <div className="hidden md:flex md:flex-wrap md:text-sm">
+        <div className="hidden md:flex md:flex-wrap md:justify-between md:text-sm">
           {movesPokemon.map((item: Moves) => (
             <p
-              className="m-[0.15rem] rounded-md border bg-white/30 px-1"
+              className="m-[0.15rem] rounded-md border bg-white/5 px-1"
               key={`${item.move.name}${namePokemon}`}
             >
               {item.move.name}
