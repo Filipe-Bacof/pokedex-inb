@@ -6,7 +6,6 @@ import {
   StatItem,
   TypePokemon,
 } from '@/interfaces/pokemons.interface'
-import { typeColors } from '@/utils/typeColors'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
@@ -62,6 +61,28 @@ export default function ModalPokemon({
       console.log('Erro!')
     }
   }
+
+  const typeColors: { [key: string]: string } = {
+    bug: 'bg-lime-500 border-lime-600',
+    dark: 'bg-zinc-900 border-zinc-950 text-white',
+    dragon: 'bg-indigo-700 border-indigo-800',
+    electric: 'bg-yellow-500 border-yellow-600',
+    fairy: 'bg-pink-300 border-pink-400',
+    fighting: 'bg-red-600 border-red-700',
+    fire: 'bg-orange-600 border-orange-700',
+    flying: 'bg-violet-500 border-violet-600',
+    ghost: 'bg-violet-900 border-violet-950',
+    grass: 'bg-green-500 border-green-600',
+    ground: 'bg-orange-300 border-orange-400',
+    ice: 'bg-cyan-400 border-cyan-500',
+    normal: 'bg-amber-200 border-amber-300',
+    poison: 'bg-purple-600 border-purple-700',
+    psychic: 'bg-pink-500 border-pink-600',
+    rock: 'bg-yellow-700 border-yellow-800',
+    steel: 'bg-slate-400 border-slate-500',
+    water: 'bg-sky-500 border-sky-600',
+  }
+
   return (
     <div
       className={`fixed left-1/2 top-1/2 flex h-[32rem] w-[20rem] -translate-x-1/2 -translate-y-1/2 flex-col rounded-md bg-black/90 p-4 text-white md:h-[35rem] md:w-[45rem] ${
