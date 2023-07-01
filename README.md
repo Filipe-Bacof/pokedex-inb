@@ -1,34 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Desafio Técnico Instituto Nicolas Bueno
 
-## Getting Started
+[<img alt="Vercel" height="30" width="30" align="center" src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png" /> Ver Deploy](https://pokedex-bacof.vercel.app)
 
-First, run the development server:
+[<img alt="Pokebola" height="30" width="30" align="center" src="https://www.freeiconspng.com/thumbs/pokeball-icon/pokeball-icon-23.png" /> Documentação PokeAPI](https://pokeapi.co/docs/v2)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Tecnologias Utilizadas:
+[<img alt="NextJS" height="30" width="30" align="center" src="https://dinhanhthi.com/img/header/nextjs.png" /> Next.JS](https://nextjs.org)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[<img alt="REACT.JS" height="30" width="30" align="center" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" /> React.JS](https://react.dev)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[<img alt="TS" height="30" width="30" align="center" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" /> Typescript](https://www.typescriptlang.org)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+[<img alt="TailwindCSS" height="30" width="30" align="center" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png" /> Tailwind CSS](https://tailwindcss.com)
 
-## Learn More
+### Aplicação desenvolvida entre os dias 28 de Junho e 02 de Julho de 2023.
+## [Ver Portifólio Filipe Bacof](https://portifolio-filipe-bacof.vercel.app/)
 
-To learn more about Next.js, take a look at the following resources:
+## Prints do Projeto:
+`< colocar depois >`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Sobre o TypeScript
+É super recomendado o uso de TypeScript em qualquer projeto. O TypeScript adiciona recursos de tipagem estática ao JavaScript, trazendo vários benefícios como:
+- `Verificação de tipagem em tempo de compilação`: O TypeScript permite detectar erros de tipagem antes mesmo da execução do código, o que ajuda a evitar bugs e torna o desenvolvimento mais robusto.
+- `Melhor IntelliSense e autocomplete`: Com o uso de tipos explícitos, o TypeScript melhora a experiência de desenvolvimento, fornecendo sugestões de código e informações mais precisas sobre as APIs utilizadas.
+- `Refatoração mais segura`: O TypeScript permite a reestruturação do código com mais segurança, pois pode identificar potenciais problemas e fornecer avisos durante a refatoração.
+- `Maior legibilidade`: Com a adição de tipos, o código se torna mais legível e autoexplicativo, o que facilita a compreensão e a manutenção do código ao longo do tempo.

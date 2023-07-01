@@ -64,7 +64,7 @@ export default function ModalPokemon({
   }
   return (
     <div
-      className={`fixed left-1/2 top-1/2 flex h-[32rem] w-[20rem] -translate-x-1/2 -translate-y-1/2 flex-col rounded-md bg-black/90 p-4 text-white md:h-[36rem] md:w-[45rem] ${
+      className={`fixed left-1/2 top-1/2 flex h-[32rem] w-[20rem] -translate-x-1/2 -translate-y-1/2 flex-col rounded-md bg-black/90 p-4 text-white md:h-[35rem] md:w-[45rem] ${
         !isOpen && 'hidden'
       }`}
     >
@@ -155,7 +155,8 @@ export default function ModalPokemon({
       <div className="hidden md:m-4 md:mr-0 md:flex md:flex-col md:overflow-y-scroll md:pr-4">
         <h2>
           All the moves{' '}
-          {namePokemon.charAt(0).toUpperCase() + namePokemon.slice(1)} can learn
+          {namePokemon.charAt(0).toUpperCase() + namePokemon.slice(1)} can
+          learn:
         </h2>
         <div className="hidden md:flex md:flex-wrap md:justify-between md:text-sm">
           {movesPokemon.map((item: Moves) => (
