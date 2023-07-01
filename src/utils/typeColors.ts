@@ -1,6 +1,6 @@
 export const typeColors: { [key: string]: string } = {
   bug: 'bg-lime-500 border-lime-600',
-  dark: 'bg-amber-900 border-amber-950',
+  dark: 'bg-zinc-900 border-zinc-950 text-white',
   dragon: 'bg-indigo-700 border-indigo-800',
   electric: 'bg-yellow-500 border-yellow-600',
   fairy: 'bg-pink-300 border-pink-400',
