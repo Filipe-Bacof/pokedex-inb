@@ -102,31 +102,31 @@ export default function ProfOak() {
           className="relative flex max-w-[12rem] translate-x-[5.5rem] translate-y-[5rem] flex-col gap-3 text-center text-xs font-bold"
         >
           <button
-            className="bg-yellow-500 text-blue-950"
+            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(0)}
           >
             Pokemon Fire Red Trivia.
           </button>
           <button
-            className="bg-yellow-500 text-blue-950"
+            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(1)}
           >
             How can I create my team?
           </button>
           <button
-            className="bg-yellow-500 text-blue-950"
+            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(2)}
           >
             Explain what the Pokedex is.
           </button>
           <button
-            className="bg-yellow-500 text-blue-950"
+            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(3)}
           >
             Tell me who is Filipe Bacof.
           </button>
           <a
-            className="bg-yellow-500 text-blue-950"
+            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
             href="https://portifolio-filipe-bacof.vercel.app"
             target="_blank"
             rel="noreferrer"
