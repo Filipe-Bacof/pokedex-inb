@@ -27,7 +27,6 @@ export default function Home() {
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke}`)
     if (APIResponse.status === 200) {
       const data = await APIResponse.json()
-      console.log(data)
       return data
     } else {
       console.log('⭐ Easter Egg: Missingno!!!!')
@@ -58,20 +57,25 @@ export default function Home() {
     const data = await fetchPokemon(`${poke}`.toLowerCase())
 
     if (data) {
-      if (data.name) {
+      data.name &&
         setPokeName(data.name.charAt(0).toUpperCase() + data.name.slice(1))
-      }
-      setPokeNumber(data.id)
-      setBgType(`/bg-types/${data.types[0].type.name}.jpg`)
 
-      if (data.sprites && data.sprites.versions) {
+      data.types &&
+        data.types[0].type &&
+        data.types[0].type.name &&
+        setBgType(`/bg-types/${data.types[0].type.name}.jpg`)
+
+      data.id && setPokeNumber(data.id)
+      data.id && setSearchPokemon(data.id)
+
+      data.sprites &&
+        data.sprites.versions &&
         setImagePokemon(
           data.sprites.versions['generation-v']['black-white'].animated
             .front_default,
         )
-      }
+
       setInputValue('')
-      setSearchPokemon(data.id)
     } else {
       setImagePokemon('/missingno.png')
       setBgType('/bg-wild.png')

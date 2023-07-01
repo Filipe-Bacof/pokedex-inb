@@ -16,6 +16,7 @@ export default function Header() {
         alt="Pokémon Logo"
         width={123}
         height={45}
+        priority
       />
       <nav className="flex flex-row items-center justify-center text-logo-yellow">
         <Link className="flex flex-row items-center justify-center" href={'/'}>
