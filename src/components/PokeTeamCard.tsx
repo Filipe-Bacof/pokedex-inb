@@ -70,22 +70,34 @@ export default function PokeTeamCard({
 
   return (
     <div
-      className={`m-2 rounded-lg border border-red-600 bg-black/80 p-4 ${
-        leader ? 'h-56 w-80 text-gray-200' : 'h-52 w-72 text-gray-400'
+      className={`m-2 rounded-lg border border-blue-600 bg-black/80 p-4 md:p-2 ${
+        leader
+          ? 'h-56 w-80 text-gray-200 md:h-[30rem]'
+          : 'h-52 w-72 text-gray-400 md:h-[5.6rem]'
       }`}
     >
       <div className={`flex items-center justify-between ${!name && 'hidden'}`}>
-        <h2 className="p-2 text-lg font-semibold">
+        <h2
+          className={`p-2 text-lg font-semibold md:p-0 ${leader && 'text-4xl'}`}
+        >
           {(name ?? '').charAt(0).toUpperCase() + (name ?? '').slice(1)}
         </h2>
-        <div onClick={onRemove} className="p-2 hover:text-red-500">
+        <div onClick={onRemove} className="p-2 hover:text-red-500 md:p-0">
           <IconDelete />
         </div>
       </div>
       {imagePokemon && (
-        <div className={`relative translate-x-1/4 ${!name && 'hidden'}`}>
+        <div
+          className={`relative translate-x-1/4 ${!name && 'hidden'} ${
+            !leader && 'md:-translate-y-4 md:translate-x-2/3'
+          }`}
+        >
           <Image
-            className="absolute z-20 h-24 w-24"
+            className={`absolute z-20 h-24 w-24 ${
+              !leader
+                ? 'md:h-12 md:w-12'
+                : 'md:h-48 md:w-48 md:-translate-x-8 md:translate-y-24'
+            }`}
             src={`${imagePokemon}`}
             alt={imagePokemon}
             width={1000}
@@ -93,7 +105,9 @@ export default function PokeTeamCard({
           />
           <div
             className={`absolute z-10 translate-x-12 ${
-              leader ? 'text-[7rem] text-red-600' : 'text-[6rem] text-black'
+              leader
+                ? 'text-[7rem] text-red-600 md:-translate-x-12 md:text-[16rem]'
+                : 'text-[6rem] text-black md:-translate-x-8 md:text-5xl'
             }`}
           >
             <IconPokeball />
@@ -105,26 +119,35 @@ export default function PokeTeamCard({
           <div
             className={`z-10 pt-6 ${
               leader
-                ? 'translate-x-[5.4rem] text-[7rem] text-red-800'
-                : 'translate-x-[4.8rem] text-[6rem] text-white'
+                ? 'translate-x-[5.4rem] text-[7rem] text-red-800 md:translate-x-[1.7rem] md:translate-y-4 md:md:text-[16rem]'
+                : 'translate-x-[4.8rem] text-[6rem] text-white md:-translate-y-2 md:translate-x-[9.3rem] md:text-5xl'
             }`}
           >
             <IconPokeball />
           </div>
-          <p className="z-20 flex items-center justify-center font-extrabold text-red-600">
+          <p
+            className={`z-20 flex items-center justify-center font-extrabold text-red-600 md:-translate-x-[4rem] md:-translate-y-[2.8rem] ${
+              leader && 'md:translate-x-[0.3rem] md:translate-y-8 md:text-3xl'
+            }`}
+          >
             EMPTY SLOT
           </p>
         </div>
       )}
       <div
         className={`flex justify-center ${
-          leader ? 'translate-y-[7rem]' : 'translate-y-[6.7rem]'
+          leader
+            ? 'translate-y-[7rem]'
+            : 'translate-y-[6.7rem] md:translate-y-3 md:justify-start'
         } ${!name && 'hidden'}`}
       >
         {typesPokemon.map((item: TypePokemon) => (
           <p
-            className={`m-1 rounded-md border px-1 font-medium text-black ${
+            className={`m-1 rounded-md border px-1 font-medium text-black md:text-sm ${
               typeColors[item.type.name]
+            } ${
+              leader &&
+              'md:translate-y-[15rem] md:p-2 md:px-6 md:text-2xl md:font-bold'
             }`}
             key={`${item.slot}${name}`}
           >
