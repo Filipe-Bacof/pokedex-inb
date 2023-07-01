@@ -52,7 +52,7 @@ export default function Pokemons() {
         >
           PREV
         </button>
-        <span>Página&nbsp;{getPageNumber(nextPage)}&nbsp;de 42</span>
+        <span>Page&nbsp;{getPageNumber(nextPage)}&nbsp;of 42</span>
         <button
           onClick={() => apiFetch(nextPage)}
           className="rounded-md bg-yellow-500 p-1"
