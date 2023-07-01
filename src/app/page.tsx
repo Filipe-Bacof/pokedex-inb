@@ -147,7 +147,7 @@ export default function Home() {
   }, [searchPokemon])
 
   return (
-    <section className="flex h-[140vh] flex-col items-center justify-center pb-64 md:h-[90vh] md:pb-0">
+    <section className="flex flex-col items-center justify-center pb-72 pt-8 md:h-[90vh] md:p-0">
       <div
         id="lateral-pokedex"
         className="flex h-96 w-[16.7rem] flex-row-reverse rounded-l-3xl border-l border-black bg-pokedex-b"
