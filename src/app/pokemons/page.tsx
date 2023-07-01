@@ -1,6 +1,7 @@
 'use client'
 
 import PokemonCard from '@/components/PokemonCard'
+import { IconPlayerTrackNext, IconPlayerTrackPrev } from '@/icons/IconsPrevNext'
 import { useEffect, useState } from 'react'
 
 interface PokemonItem {
@@ -45,19 +46,19 @@ export default function Pokemons() {
   }
   return (
     <section>
-      <div className="m-6 flex justify-between">
+      <div className="m-6 flex justify-between md:justify-around">
         <button
           onClick={() => apiFetch(prevPage)}
-          className="rounded-md bg-yellow-500 p-1"
+          className="rounded-lg bg-yellow-500 px-6 py-3"
         >
-          PREV
+          <IconPlayerTrackPrev />
         </button>
         <span>Page&nbsp;{getPageNumber(nextPage)}&nbsp;of 42</span>
         <button
           onClick={() => apiFetch(nextPage)}
-          className="rounded-md bg-yellow-500 p-1"
+          className="rounded-lg bg-yellow-500 px-6 py-3"
         >
-          NEXT
+          <IconPlayerTrackNext />
         </button>
       </div>
       <div className="m-12 flex flex-wrap items-center justify-center gap-2">
