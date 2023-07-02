@@ -46,7 +46,10 @@ export default function Home() {
     }
 
     if (pokemonNumber === '?' || '') {
-      return console.log('Pokemon number incorrect!')
+      return toast('This pokemon has no description.', {
+        type: 'error',
+        autoClose: 1000,
+      })
     }
 
     const APIResponse = await fetch(
@@ -68,7 +71,10 @@ export default function Home() {
 
   function saveFirstSearch(pokemonNumber: string) {
     if (pokemonNumber === '?' || '') {
-      return null
+      return toast("Couldn't save this pokemon.", {
+        type: 'error',
+        autoClose: 1000,
+      })
     }
     localStorage.setItem('firstSearch', pokemonNumber)
     toast(`The pokemon ${pokeName.toUpperCase()} was saved to first search.`, {
@@ -78,7 +84,7 @@ export default function Home() {
   }
 
   function savePokemonToLocalStorage(pokemonName: string) {
-    if (pokemonName === 'não encontrado') {
+    if (pokemonName === 'not found') {
       return toast("Couldn't save this pokemon.", {
         type: 'error',
         autoClose: 1000,
