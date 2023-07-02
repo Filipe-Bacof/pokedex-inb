@@ -325,7 +325,11 @@ export default function Home() {
               id="red-btn"
               className="h-4 w-4 cursor-pointer overflow-hidden rounded-full border border-black bg-red-700"
               onClick={() => {
-                listenDescription(pokeNumber)
+                try {
+                  listenDescription(pokeNumber)
+                } catch (error) {
+                  console.log(error)
+                }
               }}
             >
               <div className="h-3 w-3 rounded-full bg-red-600"></div>
