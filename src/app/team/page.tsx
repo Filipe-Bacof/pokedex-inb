@@ -31,7 +31,7 @@ export default function Team() {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="flex flex-col items-center justify-center md:flex-row">
+      <div className="flex flex-col items-center justify-center md:flex-row md:gap-2">
         <PokeTeamCard
           name={pokemons[0]}
           leader={true}
