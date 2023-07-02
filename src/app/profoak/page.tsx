@@ -79,21 +79,14 @@ export default function ProfOak() {
     <section className="mt-6 flex items-center justify-center">
       <div className="absolute">
         <Image
-          className="relative left-0 top-0 z-10 -translate-x-16 translate-y-96"
-          src={'/ProfOak.png'}
+          className="relative left-0 top-0 z-10 translate-y-72"
+          src={'/profOakSpeech.png'}
           alt="Prof Oak"
-          width={214}
-          height={331}
+          width={190}
+          height={450}
         />
-        <Image
-          className="relative left-0 top-0 z-10 -translate-y-8 translate-x-16"
-          src={'/speak.png'}
-          alt="Prof Oak"
-          width={214}
-          height={331}
-        />
-        <div className="absolute z-20 w-44 -translate-y-[10.5rem] translate-x-[5.7rem]">
-          <div className="relative z-30 flex w-64 -translate-x-[0.5rem] -translate-y-2">
+        <div className="absolute z-20 h-24 w-[11.5rem] -translate-y-[9.8rem] translate-x-[0.25rem]">
+          <div className="relative z-30 flex w-[11.5rem]">
             <button
               className="flex h-24 w-24 items-end justify-start"
               onClick={handlePrevSpeech}
@@ -107,46 +100,46 @@ export default function ProfOak() {
               <IconPlayerTrackNext />
             </button>
           </div>
-          <h2 className="relative z-10 flex h-24 -translate-y-[6.5rem] items-center text-center text-sm">
+          <h2 className="relative z-10 flex h-24 -translate-y-[6rem] items-center text-center text-sm">
             {arrays[currentArrayIndex][currentSpeechIndex]}
           </h2>
         </div>
         <div
           id="buttons"
-          className="relative flex max-w-[12rem] translate-x-[5.5rem] translate-y-[5rem] flex-col gap-3 text-center text-xs font-bold"
+          className="relative z-50 flex max-w-[12rem] translate-y-[7.5rem] flex-col gap-3 text-center text-xs font-bold md:translate-x-[10rem]"
         >
           <button
-            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
+            className="rounded-lg bg-logo-yellow/80 text-blue-950 hover:bg-amber-500/80 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(0)}
           >
             Pokemon Fire Red Trivia.
           </button>
           <button
-            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
+            className="rounded-lg bg-logo-yellow/80 text-blue-950 hover:bg-amber-500/80 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(1)}
           >
             Pokedex button actions?
           </button>
           <button
-            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
+            className="rounded-lg bg-logo-yellow/80 text-blue-950 hover:bg-amber-500/80 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(2)}
           >
             How can I create my team?
           </button>
           <button
-            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
+            className="rounded-lg bg-logo-yellow/80 text-blue-950 hover:bg-amber-500/80 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(3)}
           >
             Explain what the Pokedex is.
           </button>
           <button
-            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
+            className="rounded-lg bg-logo-yellow/80 text-blue-950 hover:bg-amber-500/80 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(4)}
           >
             Tell me who is Filipe Bacof.
           </button>
           <a
-            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
+            className="rounded-lg bg-logo-yellow/80 text-blue-950 hover:bg-amber-500/80 hover:text-3xg-blue"
             href="https://portifolio-filipe-bacof.vercel.app"
             target="_blank"
             rel="noreferrer"
