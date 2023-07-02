@@ -41,6 +41,7 @@ export default function Home() {
     if (speaking === true) {
       speechSynthesis.cancel()
       setSpeaking(false)
+      setAboutPokemon('')
       return
     }
 
@@ -59,30 +60,6 @@ export default function Home() {
         setAboutPokemon(
           data.flavor_text_entries[0].flavor_text.replace(/[\n\f]/g, ' '),
         )
-
-        if (aboutPokemon.trim() !== '') {
-          const textToSpeak = `${pokeName}, ${aboutPokemon}`
-
-          console.log(textToSpeak)
-
-          const msg = new SpeechSynthesisUtterance()
-          const voices = window.speechSynthesis.getVoices()
-          console.log(voices)
-          msg.voice = voices[10]
-          msg.volume = 1
-          msg.rate = 1
-          msg.pitch = 0.8
-          msg.text = textToSpeak
-          msg.lang = 'en'
-
-          msg.addEventListener('end', () => {
-            setSpeaking(false)
-          })
-
-          speechSynthesis.speak(msg)
-
-          setSpeaking(true)
-        }
       }
     } else {
       console.log('Error!')
@@ -141,7 +118,6 @@ export default function Home() {
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke}`)
     if (APIResponse.status === 200) {
       const data = await APIResponse.json()
-      console.log(data)
       return data
     } else {
       console.log('⭐ Easter Egg: Missingno!!!!')
@@ -166,6 +142,13 @@ export default function Home() {
         return
       }
     }
+
+    if (speaking === true) {
+      speechSynthesis.cancel()
+      setSpeaking(false)
+      setAboutPokemon('')
+    }
+
     setPokeNumber('')
     setPokeName('Loading...')
 
@@ -224,7 +207,9 @@ export default function Home() {
   useEffect(() => {
     const searchPoke = () => {
       if (searchPokemon !== undefined) {
-        setSearchPokemon((prevValue) => prevValue || 0 + 1)
+        setSearchPokemon((prevValue) =>
+          prevValue !== undefined ? prevValue + 1 : 1,
+        )
       }
     }
 
@@ -244,10 +229,10 @@ export default function Home() {
   // PREV BUTTON
   useEffect(() => {
     const searchPoke = () => {
-      if (searchPokemon !== undefined) {
-        if (searchPokemon > 1) {
-          setSearchPokemon((prevValue) => prevValue || 2 - 1)
-        }
+      if (searchPokemon !== undefined && searchPokemon > 1) {
+        setSearchPokemon((prevValue) =>
+          prevValue !== undefined ? prevValue - 1 : 1,
+        )
       }
     }
 
@@ -264,6 +249,30 @@ export default function Home() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchPokemon])
+
+  useEffect(() => {
+    if (aboutPokemon.trim() !== '') {
+      const textToSpeak = `${pokeName}, ${aboutPokemon}`
+
+      const msg = new SpeechSynthesisUtterance()
+      const voices = window.speechSynthesis.getVoices()
+      msg.voice = voices[10]
+      msg.volume = 1
+      msg.rate = 1
+      msg.pitch = 0.8
+      msg.text = textToSpeak
+      msg.lang = 'en'
+
+      msg.addEventListener('end', () => {
+        setSpeaking(false)
+        setAboutPokemon('')
+      })
+
+      speechSynthesis.speak(msg)
+
+      setSpeaking(true)
+    }
+  }, [aboutPokemon, pokeName])
 
   return (
     <section className="flex flex-col items-center justify-center pb-72 pt-8 md:h-[90vh] md:p-0">
