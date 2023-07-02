@@ -24,6 +24,40 @@ module.exports = {
         'logo-shadow': '#17285E',
         pokedex: '#D30A40',
       },
+      keyframes: {
+        blink1: {
+          '0%': { backgroundColor: '#0FEBF7' },
+          '50%': { backgroundColor: '#A6F4F9' },
+          '100%': { backgroundColor: '#0FEBF7' },
+        },
+        blink2: {
+          '0%': {
+            boxShadow: '0 0 50px 5px rgba(255,255,255,1)',
+          },
+          '50%': {
+            boxShadow: '0 0 50px 5px rgba(255, 255, 255, 0.1)',
+          },
+          '100%': {
+            boxShadow: '0 0 50px 5px rgba(255, 255, 255, 1)',
+          },
+        },
+        blink3: {
+          '0%': { backgroundColor: '#0EBDD2' },
+          '50%': { backgroundColor: '#0FEBF7' },
+          '100%': { backgroundColor: '#0EBDD2' },
+        },
+        blink4: {
+          '0%': { backgroundColor: '#A6F4F9' },
+          '50%': { backgroundColor: '#D1FFFF' },
+          '100%': { backgroundColor: '#A6F4F9' },
+        },
+      },
+      animation: {
+        blink1: 'blink1 1s infinite',
+        blink2: 'blink2 1s steps(10) infinite',
+        blink3: 'blink3 1s infinite',
+        blink4: 'blink4 1s infinite',
+      },
     },
   },
   plugins: [],

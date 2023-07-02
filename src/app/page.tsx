@@ -276,14 +276,32 @@ export default function Home() {
           className="flex h-96 w-64 flex-col rounded-l-3xl border border-black bg-pokedex"
         >
           <div id="buttons-container" className="m-2 flex flex-row gap-2">
-            <div className="h-14 w-14 rounded-full border border-black bg-white pl-[0.26rem] pt-[0.1rem]">
+            <div
+              className={`h-14 w-14 rounded-full border border-black bg-white pl-[0.26rem] pt-[0.1rem] ${
+                speaking && 'animate-blink2'
+              }`}
+            >
               <div
                 id="blue-btn"
-                className="h-12 w-12 overflow-hidden rounded-full border border-black bg-xs-blue"
+                className={`h-12 w-12 overflow-hidden rounded-full border border-black bg-xs-blue ${
+                  speaking && 'animate-blink1'
+                }`}
               >
-                <div className="relative m-1 h-10 w-10 rounded-full bg-xg-blue">
-                  <div className="absolute top-[-2px] ml-1 h-[1.6rem] w-[1.6rem] rounded-full bg-xs-blue">
-                    <div className="absolute left-[25%] top-[13%] h-3 w-3 rounded-full bg-xxs-blue"></div>
+                <div
+                  className={`relative m-1 h-10 w-10 rounded-full bg-xg-blue ${
+                    speaking && 'animate-blink3'
+                  }`}
+                >
+                  <div
+                    className={`absolute top-[-2px] ml-1 h-[1.6rem] w-[1.6rem] rounded-full bg-xs-blue ${
+                      speaking && 'animate-blink1'
+                    }`}
+                  >
+                    <div
+                      className={`absolute left-[25%] top-[13%] h-3 w-3 rounded-full bg-xxs-blue ${
+                        speaking && 'animate-blink4'
+                      }`}
+                    ></div>
                   </div>
                 </div>
               </div>
