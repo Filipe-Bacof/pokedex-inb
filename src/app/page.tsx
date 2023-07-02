@@ -12,6 +12,8 @@ export default function Home() {
   const [inputValue, setInputValue] = useState('')
   const [searchPokemon, setSearchPokemon] = useState<number>()
   const [bgType, setBgType] = useState('/bg-types/grass.jpg')
+  const [aboutPokemon, setAboutPokemon] = useState('')
+  const [speaking, setSpeaking] = useState(false)
 
   const form = useRef<HTMLFormElement>(null)
   const nextBtn = useRef<HTMLButtonElement>(null)
@@ -34,6 +36,58 @@ export default function Home() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchPokemon])
+
+  async function listenDescription(pokemonNumber: string) {
+    if (speaking === true) {
+      speechSynthesis.cancel()
+      setSpeaking(false)
+      return
+    }
+
+    if (pokemonNumber === '?' || '') {
+      return console.log('Pokemon number incorrect!')
+    }
+
+    const APIResponse = await fetch(
+      `https://pokeapi.co/api/v2/pokemon-species/${pokemonNumber}/`,
+    )
+
+    if (APIResponse.status === 200) {
+      const data = await APIResponse.json()
+
+      if (data && data.flavor_text_entries) {
+        setAboutPokemon(
+          data.flavor_text_entries[0].flavor_text.replace(/[\n\f]/g, ' '),
+        )
+
+        if (aboutPokemon.trim() !== '') {
+          const textToSpeak = `${pokeName}, ${aboutPokemon}`
+
+          console.log(textToSpeak)
+
+          const msg = new SpeechSynthesisUtterance()
+          const voices = window.speechSynthesis.getVoices()
+          console.log(voices)
+          msg.voice = voices[10]
+          msg.volume = 1
+          msg.rate = 1
+          msg.pitch = 0.8
+          msg.text = textToSpeak
+          msg.lang = 'en'
+
+          msg.addEventListener('end', () => {
+            setSpeaking(false)
+          })
+
+          speechSynthesis.speak(msg)
+
+          setSpeaking(true)
+        }
+      }
+    } else {
+      console.log('Error!')
+    }
+  }
 
   function saveFirstSearch(pokemonNumber: string) {
     if (pokemonNumber === '?' || '') {
@@ -87,6 +141,7 @@ export default function Home() {
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke}`)
     if (APIResponse.status === 200) {
       const data = await APIResponse.json()
+      console.log(data)
       return data
     } else {
       console.log('⭐ Easter Egg: Missingno!!!!')
@@ -237,7 +292,7 @@ export default function Home() {
               id="red-btn"
               className="h-4 w-4 cursor-pointer overflow-hidden rounded-full border border-black bg-red-700"
               onClick={() => {
-                console.log('red button')
+                listenDescription(pokeNumber)
               }}
             >
               <div className="h-3 w-3 rounded-full bg-red-600"></div>
