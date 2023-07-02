@@ -15,6 +15,14 @@ export default function ProfOak() {
     "A world of dreams and adventures with Pokémon awaits! Let's go!",
   ]
 
+  const buttonsInstructions = [
+    'We have a total of 3 buttons at the top of the pokedex, which are red, yellow and green:',
+    'The red button plays the description of the current pokemon.',
+    'The yellow button add this pokemon to your team, click "How can I create my team?" and learn.',
+    'The green button causes the current pokemon to be loaded when opening the pokedex.',
+    "Any questions just call me, I'm almost always busy with my researches, but I love to help!",
+  ]
+
   const myTeamInstructions = [
     'Are you ready to create your team and share it with your friends?',
     "It's very easy to add a pokemon to your team, I'll teach you the instructions:",
@@ -41,7 +49,13 @@ export default function ProfOak() {
   ]
 
   const [currentArrayIndex, setCurrentArrayIndex] = useState(0)
-  const arrays = [pokemonFireRed, myTeamInstructions, aboutPokedex, whoIsFilipe]
+  const arrays = [
+    pokemonFireRed,
+    buttonsInstructions,
+    myTeamInstructions,
+    aboutPokedex,
+    whoIsFilipe,
+  ]
 
   useEffect(() => {
     setCurrentSpeechIndex(0)
@@ -111,17 +125,23 @@ export default function ProfOak() {
             className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(1)}
           >
-            How can I create my team?
+            Pokedex button actions?
           </button>
           <button
             className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(2)}
           >
-            Explain what the Pokedex is.
+            How can I create my team?
           </button>
           <button
             className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
             onClick={() => setCurrentArrayIndex(3)}
+          >
+            Explain what the Pokedex is.
+          </button>
+          <button
+            className="rounded-lg bg-logo-yellow text-blue-950 hover:bg-amber-500 hover:text-3xg-blue"
+            onClick={() => setCurrentArrayIndex(4)}
           >
             Tell me who is Filipe Bacof.
           </button>
