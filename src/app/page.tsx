@@ -38,34 +38,38 @@ export default function Home() {
   }, [searchPokemon])
 
   async function listenDescription(pokemonNumber: string) {
-    if (speaking === true) {
-      speechSynthesis.cancel()
-      setSpeaking(false)
-      setAboutPokemon('')
-      return
-    }
-
-    if (pokemonNumber === '?' || '') {
-      return toast('This pokemon has no description.', {
-        type: 'error',
-        autoClose: 1000,
-      })
-    }
-
-    const APIResponse = await fetch(
-      `https://pokeapi.co/api/v2/pokemon-species/${pokemonNumber}/`,
-    )
-
-    if (APIResponse.status === 200) {
-      const data = await APIResponse.json()
-
-      if (data && data.flavor_text_entries) {
-        setAboutPokemon(
-          data.flavor_text_entries[0].flavor_text.replace(/[\n\f]/g, ' '),
-        )
+    try {
+      if (speaking === true) {
+        speechSynthesis.cancel()
+        setSpeaking(false)
+        setAboutPokemon('')
+        return
       }
-    } else {
-      console.log('Error!')
+
+      if (pokemonNumber === '?' || '') {
+        return toast('This pokemon has no description.', {
+          type: 'error',
+          autoClose: 1000,
+        })
+      }
+
+      const APIResponse = await fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/${pokemonNumber}/`,
+      )
+
+      if (APIResponse.status === 200) {
+        const data = await APIResponse.json()
+
+        if (data && data.flavor_text_entries) {
+          setAboutPokemon(
+            data.flavor_text_entries[0].flavor_text.replace(/[\n\f]/g, ' '),
+          )
+        }
+      } else {
+        console.log('Error!')
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -325,11 +329,7 @@ export default function Home() {
               id="red-btn"
               className="h-4 w-4 cursor-pointer overflow-hidden rounded-full border border-black bg-red-700"
               onClick={() => {
-                try {
-                  listenDescription(pokeNumber)
-                } catch (error) {
-                  console.log(error)
-                }
+                listenDescription(pokeNumber)
               }}
             >
               <div className="h-3 w-3 rounded-full bg-red-600"></div>
