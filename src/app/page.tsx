@@ -6,13 +6,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
 
 export default function Home() {
-  const [pokeNumber, setPokeNumber] = useState('1')
-  const [pokeName, setPokeName] = useState('Bulbasaur')
-  const [imagePokemon, setImagePokemon] = useState(
-    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/1.gif',
-  )
+  const [pokeNumber, setPokeNumber] = useState('')
+  const [pokeName, setPokeName] = useState('Loading...')
+  const [imagePokemon, setImagePokemon] = useState('/transparent.png')
   const [inputValue, setInputValue] = useState('')
-  const [searchPokemon, setSearchPokemon] = useState(1)
+  const [searchPokemon, setSearchPokemon] = useState<number>()
   const [bgType, setBgType] = useState('/bg-types/grass.jpg')
 
   const form = useRef<HTMLFormElement>(null)
@@ -20,9 +18,33 @@ export default function Home() {
   const prevBtn = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    renderPokemon(searchPokemon)
+    const poke =
+      typeof window !== 'undefined' ? localStorage.getItem('firstSearch') : null
+
+    if (poke !== null) {
+      setSearchPokemon(Number(poke))
+    } else {
+      setSearchPokemon(1) // Define o número do Pokémon como 1 para a primeira busca
+    }
+  }, [])
+
+  useEffect(() => {
+    if (searchPokemon !== undefined) {
+      renderPokemon(searchPokemon)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchPokemon])
+
+  function saveFirstSearch(pokemonNumber: string) {
+    if (pokemonNumber === '?' || '') {
+      return null
+    }
+    localStorage.setItem('firstSearch', pokemonNumber)
+    toast(`The pokemon ${pokeName.toUpperCase()} was saved to first search.`, {
+      type: 'success',
+      autoClose: 1000,
+    })
+  }
 
   function savePokemonToLocalStorage(pokemonName: string) {
     if (pokemonName === 'não encontrado') {
@@ -83,14 +105,14 @@ export default function Home() {
       if (Number(poke) >= 650) {
         setImagePokemon('/missingno.png')
         setBgType('/bg-wild.png')
-        setPokeName('Não Encontrado')
+        setPokeName('Not Found')
         setSearchPokemon(0)
         setPokeNumber('?')
         return
       }
     }
     setPokeNumber('')
-    setPokeName('Carregando...')
+    setPokeName('Loading...')
 
     const data = await fetchPokemon(`${poke}`.toLowerCase())
 
@@ -117,7 +139,7 @@ export default function Home() {
     } else {
       setImagePokemon('/missingno.png')
       setBgType('/bg-wild.png')
-      setPokeName('Não Encontrado')
+      setPokeName('Not Found')
       setSearchPokemon(0)
       setPokeNumber('?')
     }
@@ -146,7 +168,9 @@ export default function Home() {
   // NEXT BUTTON
   useEffect(() => {
     const searchPoke = () => {
-      setSearchPokemon((prevValue) => prevValue + 1)
+      if (searchPokemon !== undefined) {
+        setSearchPokemon((prevValue) => prevValue || 0 + 1)
+      }
     }
 
     const button = nextBtn.current
@@ -165,8 +189,10 @@ export default function Home() {
   // PREV BUTTON
   useEffect(() => {
     const searchPoke = () => {
-      if (searchPokemon > 1) {
-        setSearchPokemon((prevValue) => prevValue - 1)
+      if (searchPokemon !== undefined) {
+        if (searchPokemon > 1) {
+          setSearchPokemon((prevValue) => prevValue || 2 - 1)
+        }
       }
     }
 
@@ -211,7 +237,7 @@ export default function Home() {
               id="red-btn"
               className="h-4 w-4 cursor-pointer overflow-hidden rounded-full border border-black bg-red-700"
               onClick={() => {
-                console.log('Botão Vermelho')
+                console.log('red button')
               }}
             >
               <div className="h-3 w-3 rounded-full bg-red-600"></div>
@@ -220,7 +246,6 @@ export default function Home() {
               id="yellow-btn"
               className="h-4 w-4 cursor-pointer overflow-hidden rounded-full border border-black bg-yellow-500"
               onClick={() => {
-                console.log('Botão Amarelo')
                 savePokemonToLocalStorage(pokeName.toLowerCase())
               }}
             >
@@ -230,7 +255,7 @@ export default function Home() {
               id="green-btn"
               className="h-4 w-4 cursor-pointer overflow-hidden rounded-full border border-black bg-green-600"
               onClick={() => {
-                console.log('Botão Verde')
+                saveFirstSearch(pokeNumber)
               }}
             >
               <div className="h-3 w-3 rounded-full bg-green-500"></div>
