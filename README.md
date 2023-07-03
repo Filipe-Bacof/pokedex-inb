@@ -1,7 +1,7 @@
 # Desafio Técnico Instituto Nicolas Bueno
 
 ## Projeto: Pokédex
-[Ver Requisitos do Desafio](https://github.com/Filipe-Bacof/pokedex-inb/blob/master/DESAFIO.md)
+[<img alt="Github" height="30" width="30" align="center" src="https://camo.githubusercontent.com/9b5345808e52fc12295650c1fe0f012f34f40a991e3d0fe5c42cd279a9f8a307/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f7468756d622f392f39312f4f637469636f6e732d6d61726b2d6769746875622e7376672f3230343870782d4f637469636f6e732d6d61726b2d6769746875622e7376672e706e67" /> Ver Requisitos do Desafio](https://github.com/Filipe-Bacof/pokedex-inb/blob/master/DESAFIO.md)
 
 Aplicação desenvolvida entre os dias `28 de Junho` e `02 de Julho` de 2023.
 
@@ -9,7 +9,7 @@ Aplicação desenvolvida entre os dias `28 de Junho` e `02 de Julho` de 2023.
 
 [<img alt="Pokebola" height="30" width="30" align="center" src="https://www.freeiconspng.com/thumbs/pokeball-icon/pokeball-icon-23.png" /> Documentação PokeAPI](https://pokeapi.co/docs/v2)
 
-[<img alt="Icon Portifolio" height="30" width="30" align="center" src="https://raw.githubusercontent.com/Filipe-Bacof/next-portifolio/master/src/app/icon.png?token=GHSAT0AAAAAACEFKL4EF4RR337K4B3S6SFOZFBRRJQ" /> Ver Portifólio Filipe Bacof](https://portifolio-filipe-bacof.vercel.app/)
+[<img alt="Icon Portifolio" height="30" width="30" align="center" src="https://raw.githubusercontent.com/Filipe-Bacof/portifolio-filipe/master/public/favicon.jpg" /> Ver Portifólio Filipe Bacof](https://portifolio-filipe-bacof.vercel.app/)
 
 ## Tecnologias Utilizadas:
 [<img alt="NextJS" height="30" width="30" align="center" src="https://dinhanhthi.com/img/header/nextjs.png" /> Next.JS](https://nextjs.org)
@@ -58,8 +58,33 @@ Aplicação desenvolvida entre os dias `28 de Junho` e `02 de Julho` de 2023.
 <img alt="Time Mobile" align="center" src="./prints/print6.png" />
 
 # Sobre o TypeScript
-É super recomendado o uso de TypeScript em qualquer projeto. O TypeScript adiciona recursos de tipagem estática ao JavaScript, trazendo vários benefícios como:
+- É super recomendado o uso de TypeScript em qualquer projeto.
+- O TypeScript adiciona recursos de tipagem estática ao JavaScript, trazendo vários benefícios como:
 - `Verificação de tipagem em tempo de compilação`: O TypeScript permite detectar erros de tipagem antes mesmo da execução do código, o que ajuda a evitar bugs e torna o desenvolvimento mais robusto.
 - `Melhor IntelliSense e autocomplete`: Com o uso de tipos explícitos, o TypeScript melhora a experiência de desenvolvimento, fornecendo sugestões de código e informações mais precisas sobre as APIs utilizadas.
 - `Refatoração mais segura`: O TypeScript permite a reestruturação do código com mais segurança, pois pode identificar potenciais problemas e fornecer avisos durante a refatoração.
 - `Maior legibilidade`: Com a adição de tipos, o código se torna mais legível e autoexplicativo, o que facilita a compreensão e a manutenção do código ao longo do tempo.
+
+# Automação do ambiente
+- Durante o processo de desenvolvimento, optei por transformar os trechos que se repetiam em componentes, visando maior reutilização de código. Isso permitiu uma abordagem mais modular e facilitou a manutenção do sistema no futuro.
+- Além disso, utilizei o ESLint para automatizar a identação e padronização do código, tornando-o mais consistente e legível. Com isso, pude garantir uma base de código mais limpa e livre de erros.
+- Para melhor organizar o projeto, dividi as responsabilidades dos requisitos em diferentes telas, o que promoveu uma melhor separação de preocupações e facilitou o desenvolvimento de cada funcionalidade específica.
+
+# Interface
+- Na elaboração da interface, priorizei a simplicidade visual, mas ao mesmo tempo, fiz um esforço para criar a Pokedex utilizando o Tailwind CSS.
+- Essa biblioteca de estilos permitiu uma estilização mais eficiente e consistente, resultando em um design mais atrativo e responsivo. O resultado final tornou o projeto muito mais interessante do que simplesmente listar todos os Pokémons.
+- Com o Tailwind CSS o processo de desenvolvimento fica mais produtivo, pois ao invés de ficar alternando entre arquivos de estilização e os componentes, essa ferramenta aloca toda a parte do CSS em classes utilitárias.
+
+# Arquitetura implementada
+- Como estou usando React com o Next.js, que é a sugestão de framework indicada na própria documentação do React, ficou muito mais simples arquitetar minha aplicação.
+- O Next.js possui diversas estratégias de renderização eficientes, CSR (Client Side Rendering) SSR (Server Side Rendering) e SSG (Static Site Generation), isso possibilita melhorar o desempenho geral da aplicação.
+- Além disso, a estrutura do Next.js facilitou a implementação de rotas e a organização do código em componentes reutilizáveis.
+- Com o React, pude utilizar a programação orientada a componentes, o que contribuiu para uma melhor organização e escalabilidade do projeto.
+- Essa arquitetura bem estruturada permitiu uma manutenção mais fácil e rápida, além de oferecer uma base sólida para futuras melhorias e expansões do sistema.
+
+# Projeto Anterior
+- Este não foi o meu primeiro contato com a PokeAPI. Já havia desenvolvido uma aplicação semelhante anteriormente, utilizando HTML, CSS e JavaScript.
+- No entanto, neste projeto, dediquei-me ao máximo e levei-o a um nível mais profissionalizado, com mais funcionalidades, com visual mais atrativo e proporcionando uma experiência mais sofisticada e agradável.
+- Caso deseje conferir o projeto anterior, vou deixar o link abaixo para o deploy feito no github pages, mas garanto que tudo que foi feito no projeto antigo também está neste, com várias adições e melhorias:
+
+[<img alt="Pokebola" height="30" width="30" align="center" src="https://www.freeiconspng.com/thumbs/pokeball-icon/pokeball-icon-23.png" /> Ver projeto com HTML, CSS e JavaScript](https://filipe-bacof.github.io/Pokedex/)
