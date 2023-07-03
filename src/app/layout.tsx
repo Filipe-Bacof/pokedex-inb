@@ -7,13 +7,13 @@ import Toast from './Toast'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Pokedéx - Filipe Bacof',
-  description: 'Consulte a Pokedéx e Monte seu Time Pokémon',
+  title: 'Pokedex - Filipe Bacof',
+  description: 'Consult the Pokedex and Build your Pokémon Team',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-br" className="bg-lg-blue">
+    <html lang="en" className="bg-lg-blue">
       <body className={`${inter.className}`}>
         <Toast />
         <Header />
