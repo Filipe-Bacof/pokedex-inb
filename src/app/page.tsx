@@ -19,6 +19,40 @@ export default function Home() {
   const nextBtn = useRef<HTMLButtonElement>(null)
   const prevBtn = useRef<HTMLButtonElement>(null)
 
+  const backgrounds: { [key: string]: string } = {
+    bug: 'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/bug.jpg',
+    dark: 'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/dark.jpg',
+    dragon:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/dragon.jpg',
+    electric:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/electric.jpg',
+    fairy:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/fairy.jpg',
+    fighting:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/fighting.jpg',
+    fire: 'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/fire.jpg',
+    flying:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/flying.jpg',
+    ghost:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/ghost.jpg',
+    grass:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/grass.jpg',
+    ground:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/ground.jpg',
+    ice: 'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/ice.jpg',
+    normal:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/normal.jpg',
+    poison:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/poison.jpg',
+    psychic:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/psychic.jpg',
+    rock: 'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/rock.jpg',
+    steel:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/steel.jpg',
+    water:
+      'https://raw.githubusercontent.com/Filipe-Bacof/Filipe-Bacof/main/pokedex-inb-backgrounds/water.jpg',
+  }
+
   useEffect(() => {
     const poke =
       typeof window !== 'undefined' ? localStorage.getItem('firstSearch') : null
@@ -171,7 +205,7 @@ export default function Home() {
       data.types &&
         data.types[0].type &&
         data.types[0].type.name &&
-        setBgType(`/bg-types/${data.types[0].type.name}.jpg`)
+        setBgType(backgrounds[data.types[0].type.name])
 
       data.id && setPokeNumber(data.id)
       data.id && setSearchPokemon(data.id)
