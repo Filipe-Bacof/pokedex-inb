@@ -12,7 +12,7 @@ Aplicação desenvolvida entre os dias `28 de Junho` e `02 de Julho` de 2023.
 [<img alt="Icon Portifolio" height="30" width="30" align="center" src="https://raw.githubusercontent.com/Filipe-Bacof/portifolio-filipe/master/public/favicon.jpg" /> Ver Portifólio Filipe Bacof](https://portifolio-filipe-bacof.vercel.app/)
 
 ## Tecnologias Utilizadas:
-[<img alt="NextJS" height="30" width="30" align="center" src="https://dinhanhthi.com/img/header/nextjs.png" /> Next.JS](https://nextjs.org)
+[<img alt="NextJS" height="30" width="30" align="center" src="https://static-00.iconduck.com/assets.00/nextjs-icon-2048x2048-eugu5rfi.png" /> Next.JS](https://nextjs.org)
 
 [<img alt="REACT.JS" height="30" width="30" align="center" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" /> React.JS](https://react.dev)
 
